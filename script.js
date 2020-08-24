@@ -1,20 +1,18 @@
 // Assignment code here
-//password prompt window goes here
-
-//create arrays with each character type for genertator to pull from
-//lower
+//Create arrays with each character type for genertator to pull from
+//Lower
 var lowerCase = [
-  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
-//upper
+  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
+//Upper
 function changeCharacterToUppercase(character) {
-  return character.toUpperCase()
+  return character.toUpperCase();
 }
-var upperCase = lowerCase.map(changeCharacterToUppercase)
-//numbers
-var numbers = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
-//special character
-var specialChar = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-specialChar = specialChar.split('')
+var upperCase = lowerCase.map(changeCharacterToUppercase);
+//Numbers
+var numbers = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ];
+//Special characters
+var specialChar = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+specialChar = specialChar.split('');
 
 
 //number of characters at least 8 characters and no more than 128 characters
@@ -25,20 +23,20 @@ var randomNumber = function(min, max) {
 
 //they must select a valid input
 var getPasswordLength = function() {
-  var inputValue
-  var validInput = false 
+  var inputValue;
+  var validInput = false;
   while ( validInput === false) {
     inputValue = window.prompt("Input password length between 8 and 128 characters.")
-    var numberInputValue = parseInt(inputValue)
+    var numberInputValue = parseInt(inputValue);
     var inputTooShort = numberInputValue <= 7;
-    var inputTooLong = numberInputValue >= 128;
+    var inputTooLong = numberInputValue >= 129;
     var inputNaN = isNaN(numberInputValue);
-      if (inputTooShort === true || inputTooLong === true || inputNaN === true) {
-        window.alert("Input is incorrect, try again! Input must be a number between 8 and 128.")//invalid prompt otherwise
-        validInput = false;
-      } else {
-        validInput = true;
-      } 
+    if (inputTooShort === true || inputTooLong === true || inputNaN === true) {
+      window.alert("Input is incorrect, try again! Input must be a number between 8 and 128.")//invalid prompt otherwise
+      validInput = false;
+    } else {
+      validInput = true;
+    }
   }
   return inputValue;
 };
@@ -49,27 +47,31 @@ function generatePassword() {
   //length of password
   var passwordLength = getPasswordLength();
   //Lower case prompt
-  var lowerCasePrompt = window.confirm("Would you like to use lower case, click yes to confirm.")
+  var lowerCasePrompt = window.confirm("Would you like to use lower case, click yes to confirm.");
   //Upper case prompt
-  var upperCasePrompt = window.confirm("Would you like to use UPPER case, click yes to confirm.")
+  var upperCasePrompt = window.confirm("Would you like to use UPPER case, click yes to confirm.");
   //Numeric case prompt
-  var numbersPrompt = window.confirm("Would you like to use numbers, click yes to confirm.")
+  var numbersPrompt = window.confirm("Would you like to use numbers, click yes to confirm.");
   //special character case prompt
-  var specialCharPrompt = window.confirm("Would you like to use Special Characters (!#$%&'()*+,-./:;<=>?@[\]^_`{|}~), click yes to confirm.")
+  var specialCharPrompt = window.confirm("Would you like to use Special Characters (!#$%&'()*+,-./:;<=>?@[\]^_`{|}~), click yes to confirm.");
   // this variable will hold character sets the user wants to include
-  var selectedCharacterSets = []
+  var selectedCharacterSets = [];
   // if lowercase is true, add lowercase array to ^ that array
   if (lowerCasePrompt === true) {
-    selectedCharacterSets.push(lowerCase)
+    selectedCharacterSets.push(lowerCase);
   }
   if (upperCasePrompt === true) {
-    selectedCharacterSets.push(upperCase)
+    selectedCharacterSets.push(upperCase);
   }
   if (numbersPrompt === true) {
-    selectedCharacterSets.push(numbers)
+    selectedCharacterSets.push(numbers);
   }
   if (specialCharPrompt === true) {
-    selectedCharacterSets.push(specialChar)
+    selectedCharacterSets.push(specialChar);
+  }
+  if (lowerCasePrompt === false && upperCasePrompt === false && numbersPrompt === false && specialCharPrompt === false ) {
+    window.alert("You must pick at least one option!");
+    return generatePassword();
   }
   // flatten array for ease of use
   selectedCharacterSets = selectedCharacterSets.flat();
@@ -81,7 +83,7 @@ function generatePassword() {
     password = password + randomChar;
   }
 return password;
-};
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
