@@ -8,4 +8,4 @@ We then also had to make sure they corectly entered inputs. Making sure they ent
 
 This assignment was tricky and involved knowledge and understanding of arrays, if/else statements, and for(and while) loops.
 
-<a href="./images/randompassword.png" alt="screenshot of random password generator with random password in the generator." />
+<img src="../images/randompassword.png" alt="screenshot of random password generator with random password in the generator." />
